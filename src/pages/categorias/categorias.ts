@@ -32,7 +32,9 @@ export class CategoriasPage {
       this.items = response;
     },
     error => {
-      console.log(error);
+      // comentar para retirar a responsabilidade do controlador para imprimir erro
+      // agora o erro vai ser impresso no error-interceptor.ts
+      //console.log(error); 
     });
   }
 
