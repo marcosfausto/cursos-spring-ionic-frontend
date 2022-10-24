@@ -47,4 +47,8 @@ export class HomePage {
     error => {console.log('Autenticação falhou!')});
   }
 
+  signup() {
+    this.navCtrl.push('SignupPage')
+  }
+
 }
