@@ -14,29 +14,35 @@ export class ProdutosPage {
   items: ProdutoDTO[];
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     public produtoService: ProdutoService) {
+    public navParams: NavParams,
+    public produtoService: ProdutoService) {
   }
 
   ionViewDidLoad() {
     let categoria_id = this.navParams.get('categoria_id');
     this.produtoService.findByCategoria(categoria_id)
-    .subscribe(response => {
-      this.items = response['content'];
-      this.loadImageUrls();
-    },
-    error =>{});
+      .subscribe(response => {
+        this.items = response['content'];
+        this.loadImageUrls();
+      },
+        error => { });
   }
 
   loadImageUrls() {
     this.items.forEach(item => {
       this.produtoService.getSmallImageFromBucket(item.id)
-      .subscribe(response => {
-        item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
-      },
-      error => {});
-        
+        .subscribe(response => {
+          item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
+        },
+          error => { });
+
     });
- }
+  }
+
+  showDetail() {
+    this.navCtrl.push('ProdutoDetailPage');
+  }
+
+
 
 }
