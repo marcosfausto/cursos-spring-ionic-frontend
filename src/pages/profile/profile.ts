@@ -33,7 +33,7 @@ export class ProfilePage {
     if (LocalUser && LocalUser.email) { // checar se é nulo
       this.clienteService.findByEmail(LocalUser.email)
       .subscribe(response => {
-        this.cliente = response;
+        this.cliente = response as ClienteDTO; // casting para ClienteDTO
         this.getImageIfExists();
       },
       error => {
