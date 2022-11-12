@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ProdutoDTO } from '../../models/produto.dto';
 import { CartService } from '../../services/domain/cart.service';
@@ -24,13 +24,15 @@ export class ProdutoDetailPage {
   constructor(public navCtrl: NavController, 
   public navParams: NavParams,
   public produtoService: ProdutoService,
-  public cartService: CartService) {
+  public cartService: CartService,
+  public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     let produto_id = this.navParams.get('produto_id');
     this.produtoService.findById(produto_id)
     .subscribe(response => {
+      this.presentLoading();
       this.item = response;
       this.getImageUrlIfExists();
     },
@@ -52,6 +54,15 @@ export class ProdutoDetailPage {
   addToCart(produto: ProdutoDTO) {
     this.cartService.addProduto(produto);
     this.navCtrl.setRoot('CartPage');
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration: 1000
+    });
+    loader.present();
+    return loader;
   }
 
 }
