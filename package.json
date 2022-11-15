@@ -26,6 +26,9 @@
     "@ionic-native/status-bar": "4.20.0",
     "@ionic/storage": "2.2.0",
     "angular2-jwt": "^0.2.3",
+    "cordova-android": "10.1.2",
+    "cordova-android-support-gradle-release": "^3.0.1",
+    "cordova-androidx-build": "1.0.4",
     "cordova-browser": "^5.0.0",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.2",
@@ -40,7 +43,7 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.2.4",
+    "@ionic/app-scripts": "^3.2.4",
     "typescript": "2.6.2"
   },
   "description": "An Ionic project",
@@ -51,10 +54,15 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      },
+      "cordova-androidx-build": {}
     },
     "platforms": [
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }
